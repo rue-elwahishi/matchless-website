@@ -4,9 +4,11 @@ const morgan = require('morgan');
 const connectDb = require('./config/db');
 
 //Load env vars
-dotenv.config({path: './config/config.env'});
+dotenv.config({
+    path: './config/config.env'
+});
 
-const  app = express();
+const app = express();
 
 
 //Route Files
@@ -36,9 +38,3 @@ process.on('unhandledrejection', (err, promise) => {
     //close Server and exit
     server.close(() => process.exit(1))
 });
-
-
-
-
-
-
