@@ -6,7 +6,10 @@ const ItemSchema = new mongoose.Schema({
     maxlength: [50, "name can not be more than 50 characters"],
     required: true
   },
-  category: [{ type: mongoose.Schema.Types.ObjectId, ref: "Category" }],
+  category: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Category"
+  },
   size: {
     type: String,
     default: "Standard"
