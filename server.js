@@ -4,13 +4,17 @@ const morgan = require('morgan');
 const connectDb = require('./config/db');
 
 //Load env vars
-dotenv.config({ path: './config/config.env' });
+dotenv.config({
+    path: './config/config.env'
+});
 
 const app = express();
 
 
 //Route Files
 const users = require('./routes/users');
+const auth = require('./routes/auth');
+const categories = require('./routes/categories');
 
 //json parser
 app.use(express.json());
@@ -27,6 +31,8 @@ const PORT = process.env.PORT || 5000;
 
 //mount routes
 app.use('/api/v1/users', users);
+app.use('/api/v1/auth', auth);
+app.use('/api/v1/categories', categories)
 
 const server = app.listen(PORT, console.log(`Server is running in ${process.env.NODE_ENV} mode on port ${PORT}`));
 
@@ -36,9 +42,3 @@ process.on('unhandledrejection', (err, promise) => {
     //close Server and exit
     server.close(() => process.exit(1))
 });
-
-
-
-
-
-
