@@ -6,7 +6,7 @@ const Items = require('../models/Item')
 
 exports.getAllItems = async (req, res, next) => {
     try {
-        const items = await Items.find()
+        const items = await Items.find().populate('category')
 
         res.status(200).json({
             success: true,
@@ -27,7 +27,7 @@ exports.getAllItems = async (req, res, next) => {
 
 exports.getItem = async (req, res, next) => {
     try {
-        const item = await Items.findById(req.params.id)
+        const item = await Items.findById(req.params.id).populate('category')
 
         res.status(200).json({
             success: true,
