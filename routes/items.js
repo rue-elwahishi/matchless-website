@@ -10,10 +10,10 @@ const {
 
 const router = express.Router();
 
-const { protect } = require('../middlewares/auth');
+const { protect, authorize } = require('../middlewares/auth');
 
-router.route('/').get(getAllItems).post(protect, createItem);
+router.route('/').get(getAllItems).post(protect, authorize('admin'), createItem);
 
-router.route('/:id').get(getItem).put(protect, updateItem).delete(protect, deleteItem);
+router.route('/:id').get(getItem).put(protect, authorize('admin'), updateItem).delete(protect, authorize('admin'), deleteItem);
 
 module.exports = router;
