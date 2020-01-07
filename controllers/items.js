@@ -41,6 +41,28 @@ exports.getItem = async (req, res, next) => {
     }
 };
 
+//  @desc Get all Items by category
+//  @route GET /api/v1/Items/:category
+//  @access Public
+
+exports.getAllItemsByCatgeoryId = async (req, res, next) => {
+    try {
+        const items = await Items.find({ category: req.params.categoryId});
+
+        console.log(req.params.categoryId);
+        res.status(200).json({
+            success: true,
+            data: items
+        })
+    } catch (err) {
+        res.status(400).json({
+            success: false,
+            error: err.message
+
+        })
+    }
+};
+
 //  @desc Get create Item
 //  @route GET /api/v1/Item
 //  @access Public

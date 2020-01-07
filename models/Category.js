@@ -9,7 +9,8 @@ const CategorySchema = new mongoose.Schema({
   }
 },{
   toJSON: { virtuals: true },
-  toObject: { virtuals: true }
+  toObject: { virtuals: true },
+  id: false
 });
 
 // Cascade delete items when a category is deleted
