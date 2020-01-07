@@ -6,7 +6,7 @@ const Category = require("../models/Category");
 
 exports.getAllCategories = async (req, res, next) => {
     try {
-        const Categories = await Category.find();
+        const Categories = await Category.find().populate('items');
         res.status(200).json({
             success: true,
             data: Categories
@@ -24,7 +24,7 @@ exports.getAllCategories = async (req, res, next) => {
 //  @access Public
 exports.getCategory = async (req, res, next) => {
     try {
-        const aCategory = await Category.findById(req.params.id);
+        const aCategory = await Category.findById(req.params.id).populate('items');
         if (!aCategory) {
             return res.status(400).success({
                 success: false
@@ -69,7 +69,7 @@ exports.createCategory = async (req, res, next) => {
 
 exports.updateCategory = async (req, res, next) => {
     try {
-        const aCategory = await Category.findByIdAndUpdate(req.params.id, req.body, {
+        const aCategory = await Category.findById(req.params.id, req.body, {
             new: true,
             runValidators: true
         });
@@ -78,6 +78,9 @@ exports.updateCategory = async (req, res, next) => {
                 success: false
             });
         }
+
+        aCategory.remove();
+
         res.status(200).json({
             success: true,
             data: aCategory
