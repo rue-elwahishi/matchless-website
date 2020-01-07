@@ -37,4 +37,5 @@ const ItemSchema = new mongoose.Schema({
   image_url: [String]
 });
 
+
 module.exports = mongoose.model("Item", ItemSchema);

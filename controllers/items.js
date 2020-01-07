@@ -6,7 +6,7 @@ const Items = require('../models/Item')
 
 exports.getAllItems = async (req, res, next) => {
     try {
-        const items = await Items.find().populate('category')
+        const items = await Items.find().populate('category');
 
         res.status(200).json({
             success: true,
@@ -19,7 +19,7 @@ exports.getAllItems = async (req, res, next) => {
 
         })
     }
-}
+};
 
 //  @desc Get one Item
 //  @route GET /api/v1/Item/id
@@ -27,7 +27,7 @@ exports.getAllItems = async (req, res, next) => {
 
 exports.getItem = async (req, res, next) => {
     try {
-        const item = await Items.findById(req.params.id).populate('category')
+        const item = await Items.findById(req.params.id).populate('category');
 
         res.status(200).json({
             success: true,
@@ -39,7 +39,29 @@ exports.getItem = async (req, res, next) => {
             error: err.message
         })
     }
-}
+};
+
+//  @desc Get all Items by category
+//  @route GET /api/v1/Items/:category
+//  @access Public
+
+exports.getAllItemsByCatgeoryId = async (req, res, next) => {
+    try {
+        const items = await Items.find({ category: req.params.categoryId});
+
+        console.log(req.params.categoryId);
+        res.status(200).json({
+            success: true,
+            data: items
+        })
+    } catch (err) {
+        res.status(400).json({
+            success: false,
+            error: err.message
+
+        })
+    }
+};
 
 //  @desc Get create Item
 //  @route GET /api/v1/Item
@@ -47,7 +69,7 @@ exports.getItem = async (req, res, next) => {
 
 exports.createItem = async (req, res, next) => {
     try {
-        const item = await Items.create(req.body)
+        const item = await Items.create(req.body);
 
         res.status(201).json({
             success: true,
@@ -59,7 +81,7 @@ exports.createItem = async (req, res, next) => {
             error: err.message
         })
     }
-}
+};
 
 //  @desc Get Update Item
 //  @route GET /api/v1/Item/id
@@ -70,7 +92,7 @@ exports.updateItem = async (req, res, next) => {
         const item = await Items.findByIdAndUpdate(req.params.id, req.body, {
             new: true,
             runValidators: true
-        })
+        });
         if (!item) {
             res.status(400).json({
                 success: true,
@@ -86,7 +108,7 @@ exports.updateItem = async (req, res, next) => {
             error: err.message
         })
     }
-}
+};
 
 //  @desc Get delete Item
 //  @route GET /api/v1/Item/id
@@ -94,7 +116,7 @@ exports.updateItem = async (req, res, next) => {
 
 exports.deleteItem = async (req, res, next) => {
     try {
-        const item = await Items.findByIdAndDelete(req.params.id)
+        const item = await Items.findByIdAndDelete(req.params.id);
 
         if (!item) {
             res.status(400).json({
@@ -111,4 +133,4 @@ exports.deleteItem = async (req, res, next) => {
             error: err.message
         })
     }
-}
+};
