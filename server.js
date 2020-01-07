@@ -3,6 +3,7 @@ const dotenv = require('dotenv');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
 const connectDb = require('./config/db');
+const cors = require('cors');
 
 //Load env vars
 dotenv.config({
@@ -20,6 +21,9 @@ const items = require('./routes/items');
 
 //json body parser
 app.use(express.json());
+
+//cors middleware
+app.use(cors());
 
 //cookieParser
 app.use(cookieParser());
