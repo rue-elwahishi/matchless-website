@@ -33,6 +33,7 @@ const ItemSchema = new mongoose.Schema({
     required: [true, "Please add a description"],
     maxlength: [140, "Name can not be more than 140 characters"]
   },
+  color: String,
   image_url: [String]
 });
 
