@@ -1,6 +1,7 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const morgan = require('morgan');
+const cookieParser = require('cookie-parser');
 const connectDb = require('./config/db');
 
 //Load env vars
@@ -17,8 +18,11 @@ const auth = require('./routes/auth');
 const categories = require('./routes/categories');
 const items = require('./routes/items');
 
-//json parser
+//json body parser
 app.use(express.json());
+
+//cookieParser
+app.use(cookieParser());
 
 //connectDb
 connectDb();
