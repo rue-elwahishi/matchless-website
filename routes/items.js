@@ -6,12 +6,14 @@ const {
     createItem,
     updateItem,
     deleteItem
-} = require('../controllers/items')
+} = require('../controllers/items');
 
-const router = express.Router()
+const router = express.Router();
 
-router.route('/').get(getAllItems).post(createItem)
+const { protect } = require('../middlewares/auth');
 
-router.route('/:id').get(getItem).put(updateItem).delete(deleteItem)
+router.route('/').get(getAllItems).post(protect, createItem);
 
-module.exports = router
+router.route('/:id').get(getItem).put(protect, updateItem).delete(protect, deleteItem);
+
+module.exports = router;

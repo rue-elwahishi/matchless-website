@@ -1,4 +1,4 @@
-const express = require('express')
+const express = require('express');
 
 const {
     getAllCategories,
@@ -6,13 +6,15 @@ const {
     createCategory,
     updateCategory,
     deleteCategory
-} = require('../controllers/Categories')
+} = require('../controllers/Categories');
 
-const router = express.Router()
+const router = express.Router();
 
-router.route('/').get(getAllCategories).post(createCategory)
+const { protect } = require('../middlewares/auth');
 
-router.route('/:id').get(getCategory).put(updateCategory).delete(deleteCategory)
+router.route('/').get(getAllCategories).post(protect, createCategory);
 
-module.exports = router
+router.route('/:id').get(getCategory).put(protect, updateCategory).delete(protect, deleteCategory);
+
+module.exports = router;
 

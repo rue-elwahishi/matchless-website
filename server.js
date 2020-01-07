@@ -40,6 +40,7 @@ app.use('/api/v1/auth', auth);
 app.use('/api/v1/categories', categories)
 app.use('/api/v1/items', items)
 
+
 const server = app.listen(PORT, console.log(`Server is running in ${process.env.NODE_ENV} mode on port ${PORT}`));
 
 //handle unhandled promise rejections

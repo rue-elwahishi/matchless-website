@@ -48,7 +48,7 @@ exports.getCategory = async (req, res, next) => {
 //  @access Private
 exports.createCategory = async (req, res, next) => {
     try {
-        console.log(req.body)
+        console.log(req.body);
         const aCategory = await Category.create(req.body);
 
         res.status(201).json({
