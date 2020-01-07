@@ -13,12 +13,12 @@ const { protect, authorize } = require('../middlewares/auth');
 const router = express.Router();
 router
     .route("/")
-    .get(protect, authorize('admin'), getUsers)
-    .post(protect, authorize('admin'), createUser);
+    .get(protect, authorize('admin', 'user'), getUsers)
+    .post(protect, authorize('admin', 'user'), createUser);
 router
     .route("/:id")
-    .get(protect, authorize('admin'), getUser)
-    .put(protect, authorize('admin'), updateUser)
-    .delete(protect, authorize('admin'), deleteUser);
+    .get(protect, authorize('admin', 'user'), getUser)
+    .put(protect, authorize('admin', 'user'), updateUser)
+    .delete(protect, authorize('admin', 'user'), deleteUser);
 
 module.exports = router;
