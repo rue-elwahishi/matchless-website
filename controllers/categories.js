@@ -6,7 +6,7 @@ const Category = require("../models/Category");
 
 exports.getAllCategories = async (req, res, next) => {
     try {
-        const Categories = await Category.find().populate('items');
+        const Categories = await Category.find().populate('items').populate('section');
         res.status(200).json({
             success: true,
             data: Categories
@@ -24,7 +24,7 @@ exports.getAllCategories = async (req, res, next) => {
 //  @access Public
 exports.getCategory = async (req, res, next) => {
     try {
-        const aCategory = await Category.findById(req.params.id).populate('items');
+        const aCategory = await Category.findById(req.params.id).populate('items').populate('section');
         if (!aCategory) {
             return res.status(400).success({
                 success: false
