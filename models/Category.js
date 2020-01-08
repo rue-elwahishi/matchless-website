@@ -5,11 +5,11 @@ const CategorySchema = new mongoose.Schema({
     type: String,
     minlength: 2,
     required: true,
-    unique: [true, "Found another category with the same name, please choose another one"],
-    section: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Section"
-    }
+    unique: [true, "Found another category with the same name, please choose another one"]
+  },
+  section: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Section"
   }
 },{
   toJSON: { virtuals: true },
