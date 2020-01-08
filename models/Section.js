@@ -24,11 +24,12 @@ const SectionSchema = new mongoose.Schema({
     //enable virtual list
     {
         toJSON: { virtuals: true },
-        toObject: { virtuals: true }
+        toObject: { virtuals: true },
+        id: false
     }
 )
 
-//reverse populate every section with a vrtual categories list
+//reverse populate every section with a virtual categories list
 SectionSchema.virtual('categories',
     {
         ref: 'Category',
