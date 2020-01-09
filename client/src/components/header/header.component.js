@@ -1,5 +1,5 @@
 import React from 'react';
-import { ReactComponent as Logo} from '../../assets/shoe.svg'
+import { ReactComponent as Logo} from '../../assets/pijama.svg'
 import { Link } from "react-router-dom";
 
 import './header.styles.scss'
@@ -12,7 +12,9 @@ const Header = () => {
             </Link>
             <div className="options">
                 <Link className="option" to="/section" > SHOP </Link>
-                <Link className="option" to="/contact" > Contact </Link>
+                <Link className="option" to="/contact" > CONTACT</Link>
+                <Link className="option" to="/signin" > SIGN IN </Link>
+                <Link className="option" to="/signup" > SIGN UP </Link>
             </div>
         </div>
     );
