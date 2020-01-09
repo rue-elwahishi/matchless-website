@@ -1,7 +1,9 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom'
+//import "assets/scss/material-kit-react.scss";
 
 import './App.css';
+import Alert from "./components/layout/Alert";
 
 //Redux
 import { Provider } from 'react-redux';
@@ -22,6 +24,7 @@ function App() {
             <Router>
                 <div>
                     <Header/>
+                    <Alert />
                     <Switch>
                         <Route exact path="/" component={HomePage} />
                         <Route path="/section" component={SectionPage} />
