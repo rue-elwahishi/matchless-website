@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
 import FormInput from "../form-input/form-input.component";
 
-import './sing-in.styles.scss'
+import './sign-in.styles.scss'
 import CustomButton from "../custom-button/custom-button.component";
 
 //redux related
 import { connect } from 'react-redux'
 import { setAlert } from "../../actions/alert";
 
-class SingIn extends Component {
+class SignIn extends Component {
 
     state = {
       email: '',
@@ -65,4 +65,4 @@ class SingIn extends Component {
     }
 }
 
-export default connect(null, { setAlert })(SingIn);
+export default connect(null, { setAlert })(SignIn);
