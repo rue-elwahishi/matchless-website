@@ -4,6 +4,10 @@ import FormInput from "../form-input/form-input.component";
 import './sing-in.styles.scss'
 import CustomButton from "../custom-button/custom-button.component";
 
+//redux related
+import { connect } from 'react-redux'
+import { setAlert } from "../../actions/alert";
+
 class SingIn extends Component {
 
     state = {
@@ -11,7 +15,7 @@ class SingIn extends Component {
       password: ''
     };
 
-    handleSubmit = event => {
+    handleSubmit = async event => {
        event.preventDefault();
 
         this.setState({
@@ -61,4 +65,4 @@ class SingIn extends Component {
     }
 }
 
-export default SingIn;
+export default connect(null, { setAlert })(SingIn);
