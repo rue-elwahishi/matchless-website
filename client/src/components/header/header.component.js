@@ -7,7 +7,6 @@ import { logout } from "../../actions/auth";
 import PropTypes from "prop-types";
 
 import { Link } from "react-router-dom";
-import SearchPage from "./../../components/search/search.component";
 
 import "./header.styles.scss";
 
@@ -54,7 +53,6 @@ const Header = ({ auth: { isAuthenticated, loading }, logout }) => {
       <Link className="logo-container" to="/">
         <Logo height="70px" width="70px" className="logo" />
       </Link>
-      <SearchPage />
       {!loading && (
         <Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>
       )}
