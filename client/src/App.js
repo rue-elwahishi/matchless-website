@@ -8,7 +8,8 @@ import Alert from "./components/layout/Alert";
 
 //Redux
 import { Provider } from "react-redux";
-import store from "./store";
+import { store, persistor } from "./store";
+import { PersistGate } from "redux-persist/integration/react";
 
 import HomePage from "./pages/homepage/homepage.component";
 import SectionPage from "./pages/section/section.component";
@@ -32,21 +33,22 @@ const App = () => {
     }, []);
     return (
         <Provider store={store}>
-            <Router>
-                <div>
-                    <Header/>
-                    <Alert />
-                    <Switch>
-                        <Route exact path="/" component={HomePage} />
-                        <Route path="/section" component={SectionPage} />
-                        <Route exact path="/signin" component={SignIn} />
-                        <Route exact path="/signup" component={SignUp} />
-                    </Switch>
-                </div>
-            </Router>
+            <PersistGate persistor={persistor} >
+                <Router>
+                    <div>
+                        <Header/>
+                        <Alert />
+                        <Switch>
+                            <Route exact path="/" component={HomePage} />
+                            <Route path="/section" component={SectionPage} />
+                            <Route exact path="/signin" component={SignIn} />
+                            <Route exact path="/signup" component={SignUp} />
+                        </Switch>
+                    </div>
+                </Router>
+            </PersistGate>
         </Provider>
     );
-
-}
+};
 
 export default App;
