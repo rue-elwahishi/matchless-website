@@ -1,11 +1,19 @@
-import React from 'react';
+import React, {useState} from 'react';
+
+//redux related
+import { connect } from 'react-redux'
+import { setAlert } from "../../actions/alert";
+import { register} from "../../actions/auth";
+
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
+// import Link from '@material-ui/core/Link';
+import { Link, Redirect } from "react-router-dom";
+
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
@@ -15,10 +23,46 @@ import Container from '@material-ui/core/Container';
 import Copyrights from "../copyrights/copyrights.components";
 import {useStyles} from "./styles";
 
+import PropTypes from 'prop-types';
 
 
-const SignUp = () => {
+
+const SignUp = ({setAlert, register, isAuthenticated}) => {
     const classes = useStyles();
+    const [formData, setFormData] = useState({
+        firstName: '',
+        lastName: '',
+        email:'',
+        password:'',
+        password2: ''
+    });
+
+    const { firstName, lastName, email, password, password2 } = formData;
+
+    const onChange = e => {
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value
+        })
+    };
+
+    const onSubmit = e => {
+        e.preventDefault();
+        if (password !== password2) {
+            setAlert('password do not match', 'danger')
+        } else {
+            register({
+                name: firstName + ' ' + lastName,
+                email,
+                password
+            })
+        }
+    };
+
+    //redirect if logged in
+    if (isAuthenticated) {
+        return <Redirect to='/' />
+    }
 
     return (
         <Container component="main" maxWidth="xs">
@@ -30,10 +74,11 @@ const SignUp = () => {
                 <Typography component="h1" variant="h5">
                     Sign up
                 </Typography>
-                <form className={classes.form} noValidate>
+                <form className={classes.form} onSubmit={e => onSubmit(e)} >
                     <Grid container spacing={2}>
                         <Grid item xs={12} sm={6}>
                             <TextField
+                                onChange={e => onChange(e)}
                                 autoComplete="fname"
                                 name="firstName"
                                 variant="outlined"
@@ -41,33 +86,39 @@ const SignUp = () => {
                                 fullWidth
                                 id="firstName"
                                 label="First Name"
+                                value={firstName}
                                 autoFocus
                             />
                         </Grid>
                         <Grid item xs={12} sm={6}>
                             <TextField
+                                onChange={e => onChange(e)}
                                 variant="outlined"
                                 required
                                 fullWidth
                                 id="lastName"
                                 label="Last Name"
                                 name="lastName"
+                                value={lastName}
                                 autoComplete="lname"
                             />
                         </Grid>
                         <Grid item xs={12}>
                             <TextField
+                                onChange={e => onChange(e)}
                                 variant="outlined"
                                 required
                                 fullWidth
                                 id="email"
                                 label="Email Address"
                                 name="email"
+                                value={email}
                                 autoComplete="email"
                             />
                         </Grid>
                         <Grid item xs={12}>
                             <TextField
+                                onChange={e => onChange(e)}
                                 variant="outlined"
                                 required
                                 fullWidth
@@ -75,15 +126,25 @@ const SignUp = () => {
                                 label="Password"
                                 type="password"
                                 id="password"
+                                value={password}
                                 autoComplete="current-password"
                             />
                         </Grid>
                         <Grid item xs={12}>
-                            <FormControlLabel
-                                control={<Checkbox value="allowExtraEmails" color="primary" />}
-                                label="I want to receive inspiration, marketing promotions and updates via email."
+                            <TextField
+                                variant="outlined"
+                                required
+                                fullWidth
+                                name="password2"
+                                label="Confirm Password"
+                                type="password"
+                                id="password2"
+                                value={password2}
+                                autoComplete="current-password"
+                                onChange={e => onChange(e)}
                             />
                         </Grid>
+
                     </Grid>
                     <Button
                         type="submit"
@@ -94,10 +155,12 @@ const SignUp = () => {
                     >
                         Sign Up
                     </Button>
-                    <Grid container justify="flex-end">
+                    <Grid container justify="center">
                         <Grid item>
-                            <Link href="#" variant="body2">
-                                Already have an account? Sign in
+                            <Link style={{
+                                color: "#3f51b5"
+                            }} to="/signin">
+                                {"Already have an account? Sign In"}
                             </Link>
                         </Grid>
                     </Grid>
@@ -110,4 +173,14 @@ const SignUp = () => {
     );
 };
 
-export default SignUp;
+SignUp.propTypes = {
+    setAlert: PropTypes.func.isRequired,
+    register: PropTypes.func.isRequired,
+    isAuthenticated: PropTypes.bool
+};
+
+const mapStateToProps = state => ({
+    isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(mapStateToProps, { setAlert, register })(SignUp);

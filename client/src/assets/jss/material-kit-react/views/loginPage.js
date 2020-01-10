@@ -1,4 +1,4 @@
-import { container } from "assets/jss/material-kit-react.js";
+import { container } from "../../material-kit-react";
 
 const signupPageStyle = {
   container: {
@@ -22,9 +22,9 @@ const signupPageStyle = {
     padding: "0",
     border: "0",
     alignItems: "center",
-    "&:before": {
-      background: "rgba(0, 0, 0, 0.5)"
-    },
+    // "&:before": {
+    //   background: "rgba(0,0,0,0.64)"
+    // },
     "&:before,&:after": {
       position: "absolute",
       zIndex: "1",
@@ -35,9 +35,9 @@ const signupPageStyle = {
       top: "0",
       content: '""'
     },
-    "& footer li a,& footer li a:hover,& footer li a:active": {
-      color: "#FFFFFF"
-    },
+    // "& footer li a,& footer li a:hover,& footer li a:active": {
+    //   color: "#FFFFFF"
+    // },
     "& footer": {
       position: "absolute",
       bottom: "0",
