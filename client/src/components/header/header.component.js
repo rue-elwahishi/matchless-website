@@ -60,6 +60,7 @@ const Header = ({
       <Link className="logo-container" to="/">
         <Logo height="70px" width="70px" className="logo" />
       </Link>
+
       {/* <SearchPage /> */}
       {!loading && (
         <Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>
