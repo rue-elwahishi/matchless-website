@@ -1,6 +1,7 @@
 import React from "react";
 import { ReactComponent as Logo } from "../../assets/pijama.svg";
 import { Link } from "react-router-dom";
+import SearchPage from "./../../components/search/search.component";
 
 import "./header.styles.scss";
 
@@ -10,6 +11,7 @@ const Header = () => {
       <Link className="logo-container" to="/">
         <Logo height="70px" width="70px" className="logo" />
       </Link>
+      <SearchPage />
       <div className="options">
         <Link className="option" to="/section">
           {" "}
