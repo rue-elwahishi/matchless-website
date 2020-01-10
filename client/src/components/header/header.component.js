@@ -15,36 +15,36 @@ const Header = ({ auth: { isAuthenticated, loading }, logout }) => {
   const authLinks = (
     <div className="options">
       <Link className="option" to="/section">
-        {" "}
-        SHOP{" "}
+        { " " }
+        SHOP{ " " }
       </Link>
       <Link className="option" to="/contact">
-        {" "}
+        { " " }
         CONTACT
       </Link>
-      <Link onClick={logout} className="option" to="/signin">
-        {" "}
-        LOGOUT{" "}
+      <Link onClick={ logout } className="option" to="/signin">
+        { " " }
+        LOGOUT{ " " }
       </Link>
     </div>
   );
   const guestLinks = (
     <div className="options">
       <Link className="option" to="/section">
-        {" "}
-        SHOP{" "}
+        { " " }
+        SHOP{ " " }
       </Link>
       <Link className="option" to="/contact">
-        {" "}
+        { " " }
         CONTACT
       </Link>
       <Link className="option" to="/signin">
-        {" "}
-        SIGN IN{" "}
+        { " " }
+        SIGN IN{ " " }
       </Link>
       <Link className="option" to="/signup">
-        {" "}
-        SIGN UP{" "}
+        { " " }
+        SIGN UP{ " " }
       </Link>
     </div>
   );
@@ -55,9 +55,9 @@ const Header = ({ auth: { isAuthenticated, loading }, logout }) => {
         <Logo height="70px" width="70px" className="logo" />
       </Link>
       <SearchPage />
-      {!loading && (
-        <Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>
-      )}
+      { !loading && (
+        <Fragment>{ isAuthenticated ? authLinks : guestLinks }</Fragment>
+      ) }
     </div>
   );
 };
