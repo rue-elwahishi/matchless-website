@@ -9,5 +9,6 @@
     <orderEntry type="library" name="@types/requirejs" level="application" />
     <orderEntry type="library" name="@types/bcryptjs" level="application" />
     <orderEntry type="library" name="@types/require-dir" level="application" />
+    <orderEntry type="library" name="all" level="application" />
   </component>
 </module>
