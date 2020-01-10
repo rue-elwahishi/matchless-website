@@ -6,18 +6,20 @@ import alert from "./alert";
 import auth from "./auth";
 import cart from "./cart";
 import directoryReducer from "./directory";
+import userReducer from "./user";
 
 const persistConfig = {
-  key: 'root',
+  key: "root",
   storage,
-  whiteList: ['cart']
+  whiteList: ["cart"]
 };
 
 const rootReducer = combineReducers({
   alert,
   auth,
   cart,
-  directory: directoryReducer
+  directory: directoryReducer,
+  user: userReducer
 });
 
-export default persistReducer(persistConfig, rootReducer)
+export default persistReducer(persistConfig, rootReducer);

@@ -2,6 +2,11 @@ import React, { Fragment } from "react";
 import { ReactComponent as Logo } from "../../assets/pijama.svg";
 import CartIcon from "../cart-icon/cart-icon.component";
 import CartDropDown from "../cart-dropdown/cart-dropdown.component";
+import { selectCurrentUser } from "../../selectors/user";
+import { selectCartHidden } from "../../selectors/cart";
+import { selectAuth } from "../../selectors/auth";
+
+import { createStructuredSelector } from "reselect";
 //redux related
 import { connect } from "react-redux";
 import { logout } from "../../actions/auth";
@@ -19,16 +24,16 @@ const Header = ({
   const authLinks = (
     <div className="options">
       <Link className="option" to="/section">
-        { " " }
-        SHOP{ " " }
+        {" "}
+        SHOP{" "}
       </Link>
       <Link className="option" to="/contact">
-        { " " }
+        {" "}
         CONTACT
       </Link>
-      <Link onClick={ logout } className="option" to="/signin">
-        { " " }
-        LOGOUT{ " " }
+      <Link onClick={logout} className="option" to="/signin">
+        {" "}
+        LOGOUT{" "}
       </Link>
       <CartIcon />
     </div>
@@ -36,20 +41,20 @@ const Header = ({
   const guestLinks = (
     <div className="options">
       <Link className="option" to="/section">
-        { " " }
-        SHOP{ " " }
+        {" "}
+        SHOP{" "}
       </Link>
       <Link className="option" to="/contact">
-        { " " }
+        {" "}
         CONTACT
       </Link>
       <Link className="option" to="/signin">
-        { " " }
-        SIGN IN{ " " }
+        {" "}
+        SIGN IN{" "}
       </Link>
       <Link className="option" to="/signup">
-        { " " }
-        SIGN UP{ " " }
+        {" "}
+        SIGN UP{" "}
       </Link>
       <CartIcon />
     </div>
@@ -61,13 +66,11 @@ const Header = ({
         <Logo height="70px" width="70px" className="logo" />
       </Link>
 
-
       {/* <SearchPage /> */}
       {!loading && (
         <Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>
       )}
       {hidden ? null : <CartDropDown />}
-
     </div>
   );
 };
@@ -77,9 +80,10 @@ Header.propTypes = {
   auth: PropTypes.object.isRequired
 };
 
-const mapStateToProps = state => ({
-  auth: state.auth,
-  cart: state.cart
+const mapStateToProps = createStructuredSelector({
+  auth: selectAuth,
+  currentUser: selectCurrentUser,
+  cart: selectCartHidden
 });
 
 export default connect(mapStateToProps, { logout })(Header);
