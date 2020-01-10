@@ -46,23 +46,6 @@ const App = () => {
             </Router>
         </Provider>
     );
-=======
-function App() {
-  return (
-    <Provider store={store}>
-      <Router>
-        <div>
-          <Header />
-          <Switch>
-            <Route exact path="/" component={HomePage} />
-            <Route path="/section" component={SectionPage} />
-            <Route exact path="/signin" component={SignIn} />
-            <Route exact path="/signup" component={SignUp} />
-          </Switch>
-        </div>
-      </Router>
-    </Provider>
-  );
 
 }
 
