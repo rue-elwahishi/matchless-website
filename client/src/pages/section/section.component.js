@@ -1,26 +1,13 @@
 import React, {Component} from 'react';
 
-import SECTION_DATA from "./section-data";
-import CollectionPreview from "../../components/collection-preview/collection-preview.component";
+import CollectionsOverview from "../../components/collections-overview/collections-overview.component";
 
-class SectionPage extends Component {
+const SectionPage = ({collections}) => (
+    <div className="section-page">
+        <CollectionsOverview/>
+    </div>
+);
 
-    state = {
-        collections: SECTION_DATA
-    };
 
-    render() {
-        const {collections} = this.state;
-        return (
-            <div className="section-page">
-                {
-                    collections.map(({id, ...otherCollectionProps}) => (
-                        <CollectionPreview key={id} {...otherCollectionProps}  />
-                    ))
-                }
-            </div>
-        );
-    }
-}
 
 export default SectionPage;
