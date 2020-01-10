@@ -1,4 +1,13 @@
 .homepage {
+  .carousel-inner {
+    width: 75vw;
+    height: 50vh;
+    margin-bottom: 20px;
+  }
+
+  .carousel-caption {
+    background-color: black;
+  }
   display: flex;
   flex-direction: column;
   align-items: center;
