@@ -17,3 +17,4 @@ const CartIcon = ({ toggleCartHidden }) => (
 // });
 
 export default connect(null, { toggleCartHidden })(CartIcon);
+
