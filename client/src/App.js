@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { Switch, Route } from 'react-router-dom'
 //import "assets/scss/material-kit-react.scss";
 
@@ -17,8 +17,17 @@ import { BrowserRouter as Router } from "react-router-dom";
 //import SignInAndSignUpPage from "./pages/sign-in-and-sign-up/sign-in-and-sign-up.component";
 import SignUp from "./components/sign-up/sign-up-component";
 import SignIn from "./components/sign-in/sign-in.component";
+import setAuthToken from "./utils/setAuthToken";
+import { loadUser } from "./actions/auth";
 
-function App() {
+if (localStorage.token) {
+    setAuthToken(localStorage.token)
+}
+
+const App = () => {
+    useEffect(() => {
+        store.dispatch(loadUser())
+    }, []);
     return (
         <Provider store={store}>
             <Router>

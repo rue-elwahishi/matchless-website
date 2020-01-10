@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 //redux related
 import { connect } from 'react-redux'
 import { setAlert } from "../../actions/alert";
+import { register} from "../../actions/auth";
 
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -11,7 +12,7 @@ import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 // import Link from '@material-ui/core/Link';
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
@@ -26,7 +27,7 @@ import PropTypes from 'prop-types';
 
 
 
-const SignUp = ({setAlert}) => {
+const SignUp = ({setAlert, register, isAuthenticated}) => {
     const classes = useStyles();
     const [formData, setFormData] = useState({
         firstName: '',
@@ -50,9 +51,18 @@ const SignUp = ({setAlert}) => {
         if (password !== password2) {
             setAlert('password do not match', 'danger')
         } else {
-            console.log(formData)
+            register({
+                name: firstName + ' ' + lastName,
+                email,
+                password
+            })
         }
     };
+
+    //redirect if logged in
+    if (isAuthenticated) {
+        return <Redirect to='/' />
+    }
 
     return (
         <Container component="main" maxWidth="xs">
@@ -165,6 +175,12 @@ const SignUp = ({setAlert}) => {
 
 SignUp.propTypes = {
     setAlert: PropTypes.func.isRequired,
+    register: PropTypes.func.isRequired,
+    isAuthenticated: PropTypes.bool
 };
 
-export default connect(null, { setAlert })(SignUp);
+const mapStateToProps = state => ({
+    isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(mapStateToProps, { setAlert, register })(SignUp);

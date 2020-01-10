@@ -12,7 +12,7 @@ import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 //import Link from '@material-ui/core/Link';
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
@@ -21,17 +21,17 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Copyrights from "../copyrights/copyrights.components";
 import {useStyles} from "./styles";
+import PropTypes from 'prop-types';
+import {login} from "../../actions/auth";
+import {ptBR} from "@material-ui/core/locale";
 
 
-
-
-const SignIn = () => {
+const SignIn = ({login, isAuthenticated}) => {
     const classes = useStyles();
     const [formData, setFormData] = useState({
         email:'',
         password:''
     });
-
     const { email, password } = formData;
 
     const onChange = e => {
@@ -43,10 +43,13 @@ const SignIn = () => {
 
     const onSubmit = e => {
         e.preventDefault();
-
-        console.log(formData)
-
+        login(email, password)
     };
+
+    //redirect if logged in
+    if (isAuthenticated) {
+        return <Redirect to='/' />
+    }
     return (
         <Container component="main" maxWidth="xs">
             <CssBaseline />
@@ -121,7 +124,17 @@ const SignIn = () => {
     );
 };
 
-export default connect(null, { setAlert })(SignIn);
+SignIn.propTypes = {
+    setAlert: PropTypes.func.isRequired,
+    login: PropTypes.func.isRequired,
+    isAuthenticated: PropTypes.bool
+};
+
+const mapStateToProps = state => ({
+    isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(mapStateToProps, { setAlert, login })(SignIn);
 
 // class SignIn extends Component {
 //
