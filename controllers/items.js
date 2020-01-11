@@ -22,7 +22,7 @@ exports.getAllItems = async (req, res, next) => {
         query = Items.find(JSON.parse(queryStr)).populate('category');
 
 
-        //Sort 
+        //Sort
         if (req.query.sort) {
             const sortBy = req.query.sort.split(',').join(' ');
             console.log(sortBy)
@@ -64,8 +64,8 @@ exports.getItem = async (req, res, next) => {
     }
 };
 
-//  @desc Get all Items by category
-//  @route GET /api/v1/Items/:category
+//  @desc Get all Items by collection
+//  @route GET /api/v1/Items/:collection
 //  @access Public
 
 exports.getAllItemsByCatgeoryId = async (req, res, next) => {
