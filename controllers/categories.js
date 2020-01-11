@@ -19,7 +19,7 @@ exports.getAllCategories = async (req, res, next) => {
     }
 };
 
-//  @desc Get a single category
+//  @desc Get a single collection
 //  @route GET /api/v1/categories/:id
 //  @access Public
 exports.getCategory = async (req, res, next) => {
@@ -43,7 +43,7 @@ exports.getCategory = async (req, res, next) => {
     }
 };
 
-//  @desc Create a single category
+//  @desc Create a single collection
 //  @route POST /api/v1/categories
 //  @access Private
 exports.createCategory = async (req, res, next) => {
@@ -63,7 +63,7 @@ exports.createCategory = async (req, res, next) => {
     }
 };
 
-//  @desc Update a single category
+//  @desc Update a single collection
 //  @route PUT /api/v1/categories/:id
 //  @access Private
 
@@ -93,7 +93,7 @@ exports.updateCategory = async (req, res, next) => {
     }
 };
 
-//  @desc delete a single category
+//  @desc delete a single collection
 //  @route DELETE /api/v1/categories/:id
 //  @access Private
 exports.deleteCategory = async (req, res, next) => {
