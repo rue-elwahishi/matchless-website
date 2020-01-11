@@ -16,11 +16,7 @@ import { Link } from "react-router-dom";
 
 import "./header.styles.scss";
 
-const Header = ({
-  auth: { isAuthenticated, loading },
-  logout,
-  cart: { hidden }
-}) => {
+const Header = ({ auth: { isAuthenticated, loading }, logout, hidden }) => {
   const authLinks = (
     <div className="options">
       <Link className="option" to="/section">
@@ -83,7 +79,7 @@ Header.propTypes = {
 const mapStateToProps = createStructuredSelector({
   auth: selectAuth,
   currentUser: selectCurrentUser,
-  cart: selectCartHidden
+  hidden: selectCartHidden
 });
 
 export default connect(mapStateToProps, { logout })(Header);
