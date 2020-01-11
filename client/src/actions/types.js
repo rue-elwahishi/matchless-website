@@ -14,5 +14,5 @@ export const CLEAR_ITEM_FROM_CART = "CLEAR_ITEM_FROM_CART";
 
 export const LOAD_SECTIONS = "LOAD_SECTIONS";
 export const LOAD_SECTIONS_FAIL = "LOAD_SECTIONS_FAIL";
-
-
+export const SEARCH_QUERY = "SEARCH_QUERY";
+export const FETCH_ITEM = "FETCH_ITEM";

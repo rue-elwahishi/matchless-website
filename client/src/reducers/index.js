@@ -6,6 +6,7 @@ import alert from "./alert";
 import auth from "./auth";
 import cart from "./cart";
 import directoryReducer from "./directory";
+import search from "./search";
 
 import userReducer from "./user";
 import sectionReducer from "./section";
@@ -22,7 +23,8 @@ const rootReducer = combineReducers({
   cart,
   directory: directoryReducer,
   user: userReducer,
-  section: sectionReducer
+  section: sectionReducer,
+  search: search
 });
 
 export default persistReducer(persistConfig, rootReducer);
