@@ -21,6 +21,7 @@ import SignUp from "./components/sign-up/sign-up-component";
 import SignIn from "./components/sign-in/sign-in.component";
 import setAuthToken from "./utils/setAuthToken";
 import { loadUser } from "./actions/auth";
+import { loadSections } from "./actions/directory";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -29,6 +30,7 @@ if (localStorage.token) {
 const App = () => {
   useEffect(() => {
     store.dispatch(loadUser());
+    store.dispatch(loadSections())
   }, []);
   return (
     <Provider store={store}>

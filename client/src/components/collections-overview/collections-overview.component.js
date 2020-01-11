@@ -7,6 +7,7 @@ import CollectionPreview from "../collection-preview/collection-preview.componen
 import {selectCollections} from "../../selectors/section.selectors";
 
 const CollectionsOverview = ({collections}) => {
+    console.log(collections)
     return (
         <div className="collections-overview">
             {
