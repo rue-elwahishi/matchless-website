@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import checkoutPage from "./pages/checkout/checkout.component";
+import SearchResult from "./pages/search-result-page/search-result.component";
 //import "assets/scss/material-kit-react.scss";
 
 import "./App.css";
@@ -30,7 +31,7 @@ if (localStorage.token) {
 const App = () => {
   useEffect(() => {
     store.dispatch(loadUser());
-    store.dispatch(loadSections())
+    store.dispatch(loadSections());
   }, []);
   return (
     <Provider store={store}>
@@ -45,6 +46,7 @@ const App = () => {
               <Route exact path="/signin" component={SignIn} />
               <Route exact path="/signup" component={SignUp} />
               <Route exact path="/checkout" component={checkoutPage} />
+              <Route exact path="/search-result" component={SearchResult} />
             </Switch>
           </div>
         </Router>

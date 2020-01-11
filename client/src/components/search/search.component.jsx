@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { MDBCol, MDBFormInline, MDBIcon } from "mdbreact";
 import { connect } from "react-redux";
 import { searchQuery, fetchItems } from "../../actions/search";
+import { withRouter } from "react-router-dom";
 
 class SearchPage extends Component {
   onChange = e => {
@@ -11,6 +12,7 @@ class SearchPage extends Component {
   onSubmit = e => {
     e.preventDefault();
     this.props.fetchItems(this.props.text);
+    this.props.history.push("/search-result");
   };
   render() {
     return (
@@ -32,6 +34,6 @@ class SearchPage extends Component {
 const mapStateToProps = state => ({
   text: state.search.text
 });
-export default connect(mapStateToProps, { searchQuery, fetchItems })(
-  SearchPage
+export default withRouter(
+  connect(mapStateToProps, { searchQuery, fetchItems })(SearchPage)
 );

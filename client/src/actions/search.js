@@ -9,7 +9,7 @@ export const searchQuery = text => dispatch => {
 };
 export const fetchItems = text => dispatch => {
   axios
-    .get(`http://localhost:5002/api/v1/items?title=${text}`)
+    .get(`http://localhost:5002/api/v1/items?name=${text}`)
     .then(response =>
       dispatch({
         type: FETCH_ITEM,

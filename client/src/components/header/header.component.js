@@ -17,7 +17,12 @@ import { Link } from "react-router-dom";
 
 import "./header.styles.scss";
 
-const Header = ({ auth: { isAuthenticated, loading }, logout, hidden }) => {
+const Header = ({
+  auth: { isAuthenticated, loading },
+  logout,
+  hidden,
+  history
+}) => {
   const authLinks = (
     <div className="options">
       <Link className="option" to="/section">
