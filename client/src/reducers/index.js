@@ -10,7 +10,6 @@ import directoryReducer from "./directory";
 import userReducer from "./user";
 import sectionReducer from "./section";
 
-
 const persistConfig = {
   key: "root",
   storage,
@@ -22,7 +21,7 @@ const rootReducer = combineReducers({
   auth,
   cart,
   directory: directoryReducer,
-  user: userReducer
+  user: userReducer,
   section: sectionReducer
 });
 
