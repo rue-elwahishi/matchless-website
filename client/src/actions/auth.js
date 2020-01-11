@@ -5,7 +5,8 @@ import {
   AUTH_ERROR,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
-  LOGOUT
+  LOGOUT,
+  SET_CURRENT_USER
 } from "./types";
 import axios from "axios";
 import { setAlert } from "./alert";
@@ -23,6 +24,10 @@ export const loadUser = () => async dispatch => {
 
     dispatch({
       type: USER_LOADED,
+      payload: res.data.data
+    });
+    dispatch({
+      type: SET_CURRENT_USER,
       payload: res.data.data
     });
   } catch (e) {

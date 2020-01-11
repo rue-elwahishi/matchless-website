@@ -6,12 +6,15 @@ import alert from "./alert";
 import auth from "./auth";
 import cart from "./cart";
 import directoryReducer from "./directory";
+
+import userReducer from "./user";
 import sectionReducer from "./section";
 
+
 const persistConfig = {
-  key: 'root',
+  key: "root",
   storage,
-  whiteList: ['cart']
+  whiteList: ["cart"]
 };
 
 const rootReducer = combineReducers({
@@ -19,7 +22,8 @@ const rootReducer = combineReducers({
   auth,
   cart,
   directory: directoryReducer,
+  user: userReducer
   section: sectionReducer
 });
 
-export default persistReducer(persistConfig, rootReducer)
+export default persistReducer(persistConfig, rootReducer);
