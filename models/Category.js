@@ -5,7 +5,7 @@ const CategorySchema = new mongoose.Schema({
     type: String,
     minlength: 2,
     required: true,
-    unique: [true, "Found another category with the same name, please choose another one"]
+    unique: [true, "Found another collection with the same name, please choose another one"]
   },
   section: {
     type: mongoose.Schema.Types.ObjectId,
@@ -17,7 +17,7 @@ const CategorySchema = new mongoose.Schema({
   id: false
 });
 
-// Cascade delete items when a category is deleted
+// Cascade delete items when a collection is deleted
 CategorySchema.pre('remove', async function (next) {
   await this.model('Item').deleteMany({ category: this._id });
   next();
