@@ -6,11 +6,16 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   LOGOUT,
-  SET_CURRENT_USER
+  SET_CURRENT_USER,
+  USER_SIGNIN_WITH_GOOGLE,
+  SIGNOUT_WITH_GOOGLE
 } from "./types";
 import axios from "axios";
 import { setAlert } from "./alert";
 import setAuthToken from "../utils/setAuthToken";
+
+import { auth } from '../utils/firebase'
+
 
 //Load User
 export const loadUser = () => async dispatch => {
@@ -102,7 +107,30 @@ export const login = (email, password) => async dispatch => {
 
 // Logout & Clear
 export const logout = () => dispatch => {
+  auth.signOut()
   dispatch({
     type: LOGOUT
   });
+
+
+  dispatch({
+    type: SIGNOUT_WITH_GOOGLE
+  });
+  var unsubscribe = auth.onAuthStateChanged((user) => {
+    loginWithGoogle(user)
+    console.log(user)
+  })
+  unsubscribe()
 };
+
+export const loginWithGoogle = (user) => dispatch => {
+  dispatch({
+    type: USER_SIGNIN_WITH_GOOGLE,
+    payload: user
+  })
+  dispatch({
+    type: SET_CURRENT_USER,
+    payload: user
+  })
+
+}
