@@ -1,57 +1,53 @@
-const Items = require("../models/Item");
+const Items = require('../models/Item')
 
 //  @desc Get all Items
 //  @route GET /api/v1/Items
 //  @access Public
 
 exports.getAllItems = async (req, res, next) => {
-  try {
-    console.log(req.query);
-    let query;
-    //Copying request body
-    const reqQuery = { ...req.query };
+    try {
+        console.log('log',req.query)
+        let query;
+        //Copying request body
+        const reqQuery = { ...req.query };
 
-    //Exlude sort from query
-    const removeFields = ["sort"];
-    //Remove sort field from query
-    removeFields.forEach(param => delete reqQuery[param]);
+        //Exlude sort from query
+        const removeFields = ['sort']
+        //Remove sort field from query
+        removeFields.forEach(param => delete reqQuery[param]);
 
-    console.log(reqQuery);
-    let queryStr = JSON.stringify(reqQuery);
-    queryStr = queryStr.replace(
-      /\b(gt|gte|lt|lte|in)\b/g,
-      match => `$${match}`
-    );
-    // query = Items.find(JSON.parse(queryStr)).populate('category');
+        console.log(reqQuery)
+        let queryStr = JSON.stringify(reqQuery);
+        queryStr = queryStr.replace(/\b(gt|gte|lt|lte|in)\b/g, match => `$${match}`);
 
-    let parsedQuery = JSON.parse(queryStr);
-    if (parsedQuery["name"]) {
-      query = Items.find({
-        name: new RegExp(parsedQuery["name"], "i")
-      }).populate("category");
-    } else {
-      query = Items.find(parsedQuery).populate("category");
+        let parsedQuery = JSON.parse(queryStr);
+        if (parsedQuery["name"]) {
+            query = Items.find({name: new RegExp(parsedQuery["name"], 'i')}).populate('category');
+        } else {
+            query = Items.find(parsedQuery).populate('category');
+        }
+
+
+        //Sort
+        if (req.query.sort) {
+            const sortBy = req.query.sort.split(',').join(' ');
+            console.log(sortBy)
+            query = query.sort(sortBy);
+        } else {
+            query = query.sort('title');
+        }
+        const items = await query
+        res.status(200).json({
+            success: true,
+            data: items
+        })
+    } catch (err) {
+        res.status(400).json({
+            success: false,
+            error: err.message
+
+        })
     }
-
-    //Sort
-    if (req.query.sort) {
-      const sortBy = req.query.sort.split(",").join(" ");
-      console.log(sortBy);
-      query = query.sort(sortBy);
-    } else {
-      query = query.sort("title");
-    }
-    const items = await query;
-    res.status(200).json({
-      success: true,
-      data: items
-    });
-  } catch (err) {
-    res.status(400).json({
-      success: false,
-      error: err.message
-    });
-  }
 };
 
 //  @desc Get one Item
@@ -59,19 +55,19 @@ exports.getAllItems = async (req, res, next) => {
 //  @access Public
 
 exports.getItem = async (req, res, next) => {
-  try {
-    const item = await Items.findById(req.params.id).populate("category");
+    try {
+        const item = await Items.findById(req.params.id).populate('category');
 
-    res.status(200).json({
-      success: true,
-      data: item
-    });
-  } catch (err) {
-    res.status(400).json({
-      success: false,
-      error: err.message
-    });
-  }
+        res.status(200).json({
+            success: true,
+            data: item
+        })
+    } catch (err) {
+        res.status(400).json({
+            success: false,
+            error: err.message
+        })
+    }
 };
 
 //  @desc Get all Items by collection
@@ -79,20 +75,21 @@ exports.getItem = async (req, res, next) => {
 //  @access Public
 
 exports.getAllItemsByCatgeoryId = async (req, res, next) => {
-  try {
-    const items = await Items.find({ category: req.params.categoryId });
+    try {
+        const items = await Items.find({ category: req.params.categoryId });
 
-    console.log(req.params.categoryId);
-    res.status(200).json({
-      success: true,
-      data: items
-    });
-  } catch (err) {
-    res.status(400).json({
-      success: false,
-      error: err.message
-    });
-  }
+        console.log(req.params.categoryId);
+        res.status(200).json({
+            success: true,
+            data: items
+        })
+    } catch (err) {
+        res.status(400).json({
+            success: false,
+            error: err.message
+
+        })
+    }
 };
 
 //  @desc Get create Item
@@ -100,19 +97,19 @@ exports.getAllItemsByCatgeoryId = async (req, res, next) => {
 //  @access Public
 
 exports.createItem = async (req, res, next) => {
-  try {
-    const item = await Items.create(req.body);
+    try {
+        const item = await Items.create(req.body);
 
-    res.status(201).json({
-      success: true,
-      data: item
-    });
-  } catch (err) {
-    res.status(400).json({
-      success: false,
-      error: err.message
-    });
-  }
+        res.status(201).json({
+            success: true,
+            data: item
+        })
+    } catch (err) {
+        res.status(400).json({
+            success: false,
+            error: err.message
+        })
+    }
 };
 
 //  @desc Get Update Item
@@ -120,26 +117,26 @@ exports.createItem = async (req, res, next) => {
 //  @access Public
 
 exports.updateItem = async (req, res, next) => {
-  try {
-    const item = await Items.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-      runValidators: true
-    });
-    if (!item) {
-      res.status(400).json({
-        success: true
-      });
+    try {
+        const item = await Items.findByIdAndUpdate(req.params.id, req.body, {
+            new: true,
+            runValidators: true
+        });
+        if (!item) {
+            res.status(400).json({
+                success: true,
+            })
+        }
+        res.status(201).json({
+            success: true,
+            data: item
+        })
+    } catch (err) {
+        res.status(400).json({
+            success: false,
+            error: err.message
+        })
     }
-    res.status(201).json({
-      success: true,
-      data: item
-    });
-  } catch (err) {
-    res.status(400).json({
-      success: false,
-      error: err.message
-    });
-  }
 };
 
 //  @desc Get delete Item
@@ -147,22 +144,22 @@ exports.updateItem = async (req, res, next) => {
 //  @access Public
 
 exports.deleteItem = async (req, res, next) => {
-  try {
-    const item = await Items.findByIdAndDelete(req.params.id);
+    try {
+        const item = await Items.findByIdAndDelete(req.params.id);
 
-    if (!item) {
-      res.status(400).json({
-        success: true
-      });
+        if (!item) {
+            res.status(400).json({
+                success: true,
+            })
+        }
+        res.status(200).json({
+            success: true,
+            data: item
+        })
+    } catch (err) {
+        res.status(400).json({
+            success: true,
+            error: err.message
+        })
     }
-    res.status(200).json({
-      success: true,
-      data: item
-    });
-  } catch (err) {
-    res.status(400).json({
-      success: true,
-      error: err.message
-    });
-  }
 };

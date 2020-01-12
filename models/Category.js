@@ -1,12 +1,13 @@
 const mongoose = require("mongoose");
 
 const CategorySchema = new mongoose.Schema({
-  name: {
+  title: {
     type: String,
     minlength: 2,
     required: true,
     unique: [true, "Found another collection with the same name, please choose another one"]
   },
+  routeName: String,
   section: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Section"
