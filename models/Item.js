@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const ItemSchema = new mongoose.Schema({
-  title: {
+  name: {
     type: String,
     maxlength: [50, "name can not be more than 50 characters"],
     required: true
@@ -34,7 +34,7 @@ const ItemSchema = new mongoose.Schema({
     maxlength: [140, "Name can not be more than 140 characters"]
   },
   color: String,
-  image_url: [String]
+  imageUrl: [String]
 });
 
 

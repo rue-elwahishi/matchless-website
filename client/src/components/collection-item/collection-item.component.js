@@ -5,7 +5,8 @@ import './collection-item.component.styles.scss'
 import { addItem } from '../../actions/cart'
 
 const CollectionItem = ({ item, addItem }) => {
-    const { name, price, imageUrl } = item
+    const { name, price, imageUrl } = item;
+    console.log(imageUrl)
     return (
         <div className="collection-item">
             <div className="image" style={ { backgroundImage: `url(${imageUrl})` } } />

@@ -6,7 +6,7 @@ const Items = require('../models/Item')
 
 exports.getAllItems = async (req, res, next) => {
     try {
-        console.log(req.query)
+        console.log('log',req.query)
         let query;
         //Copying request body
         const reqQuery = { ...req.query };
@@ -19,7 +19,13 @@ exports.getAllItems = async (req, res, next) => {
         console.log(reqQuery)
         let queryStr = JSON.stringify(reqQuery);
         queryStr = queryStr.replace(/\b(gt|gte|lt|lte|in)\b/g, match => `$${match}`);
-        query = Items.find(JSON.parse(queryStr)).populate('category');
+
+        let parsedQuery = JSON.parse(queryStr);
+        if (parsedQuery["name"]) {
+            query = Items.find({name: new RegExp(parsedQuery["name"], 'i')}).populate('category');
+        } else {
+            query = Items.find(parsedQuery).populate('category');
+        }
 
 
         //Sort
