@@ -24,7 +24,6 @@ const CollectionItem = ({ item, addItem }) => {
         }}
         inverted
       >
-        {" "}
         ADD To Cart
       </CustomButton>
     </div>
