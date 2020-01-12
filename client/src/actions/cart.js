@@ -1,7 +1,7 @@
 import {
   TOGGLE_CART_HIDDEN,
   ADD_ITEM,
-  CLEAR_ITEM_FROM_CART
+  CLEAR_ITEM_FROM_CART, CLEAR_CART
 } from "../actions/types";
 
 // export const toggleCartHidden = () => ({
@@ -27,4 +27,10 @@ export const clearItem = item => dispatch => {
     type: CLEAR_ITEM_FROM_CART,
     payload: item
   });
+};
+
+export const clearCart = () => dispatch => {
+  dispatch({
+    type: CLEAR_CART
+  })
 };
