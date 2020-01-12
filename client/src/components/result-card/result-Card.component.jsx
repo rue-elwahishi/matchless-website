@@ -5,13 +5,17 @@ import { addItem } from "../../actions/cart";
 import "./result-Card.scss";
 
 const ResultCard = ({ result, addItem }) => {
-  const { title, price, image_url } = result;
+  const { name, price, imageUrl } = result;
+  console.log(imageUrl, "image");
   return (
     <div className="result-item">
-      <div className="image" style={{ backgroundImage: `url(${image_url})` }} />
+      <div
+        className="image"
+        style={{ backgroundImage: `url(${imageUrl[0]})` }}
+      />
 
       <div className="result-footer">
-        <span className="name">{title}</span>
+        <span className="name">{name}</span>
         <span className="price">{price}</span>
       </div>
       <CustomButton

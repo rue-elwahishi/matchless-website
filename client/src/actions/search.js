@@ -10,11 +10,12 @@ export const searchQuery = text => dispatch => {
 export const fetchItems = text => dispatch => {
   axios
     .get(`http://localhost:5002/api/v1/items?name=${text}`)
-    .then(response =>
+    .then(response => {
+      console.log(response, "data");
       dispatch({
         type: FETCH_ITEM,
         payload: response.data
-      })
-    )
+      });
+    })
     .catch(err => console.log(err));
 };

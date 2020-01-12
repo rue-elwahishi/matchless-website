@@ -9,7 +9,11 @@ class ResultContainer extends React.Component {
     blabla =
       this.props.results.length > 0 ? (
         this.props.results.map(result => {
-          return <ResultCard key={result.id} result={result} />;
+          return (
+            <div className="preview">
+              <ResultCard key={result.id} result={result} />{" "}
+            </div>
+          );
         })
       ) : (
         <h1>NO Result</h1>

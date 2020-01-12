@@ -16,11 +16,11 @@ class SearchPage extends Component {
   };
   render() {
     return (
-      <MDBCol md="6">
+      <MDBCol md="5">
         <MDBFormInline className="md-form" onSubmit={this.onSubmit}>
           <MDBIcon icon="search" />
           <input
-            className="form-control form-control-sm ml-3 w-75"
+            className="form-control form-control-sm ml-1 w-75"
             type="text"
             placeholder="Search"
             aria-label="Search"
