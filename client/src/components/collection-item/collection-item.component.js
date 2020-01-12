@@ -15,6 +15,7 @@ const CollectionItem = ({ item, addItem }) => {
                 <span className="name">{ name }</span>
                 <span className="price">{ price }</span>
             </div>
+            {console.log('item',item)}
             <CustomButton onClick={ () => { addItem(item) } } inverted> ADD To Cart</CustomButton>
         </div>
     )
