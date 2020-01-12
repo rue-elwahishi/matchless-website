@@ -15,7 +15,7 @@ export const toggleCartHidden = () => dispatch => {
 };
 
 export const addItem = item => dispatch => {
-  console.log(item);
+  console.log(item, "item");
   dispatch({
     type: ADD_ITEM,
     payload: item
