@@ -5,7 +5,9 @@ import {
     AUTH_ERROR,
     LOGIN_FAIL,
     LOGIN_SUCCESS,
-    LOGOUT
+    LOGOUT,
+    USER_SIGNIN_WITH_GOOGLE,
+    SIGNOUT_WITH_GOOGLE
 } from "../actions/types";
 
 const initialState = {
@@ -25,6 +27,13 @@ export default function (state = initialState, action) {
                 loading: false,
                 user: payload
             };
+        case USER_SIGNIN_WITH_GOOGLE:
+            return {
+                ...state,
+
+                isAuthenticated: true,
+                loading: false
+            }
         case REGISTER_SUCCESS:
         case LOGIN_SUCCESS:
             localStorage.setItem('token', payload.token);
@@ -38,6 +47,7 @@ export default function (state = initialState, action) {
         case AUTH_ERROR:
         case LOGIN_FAIL:
         case LOGOUT:
+        case SIGNOUT_WITH_GOOGLE:
             localStorage.removeItem('token');
             return {
                 ...state,

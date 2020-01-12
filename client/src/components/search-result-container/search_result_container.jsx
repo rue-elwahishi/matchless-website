@@ -5,8 +5,8 @@ import "./search_result_container.scss";
 
 class ResultContainer extends React.Component {
   render() {
-    var blabla = "";
-    blabla =
+    var query = "";
+    query =
       this.props.results.length > 0 ? (
         this.props.results.map(result => {
           return (
@@ -19,7 +19,7 @@ class ResultContainer extends React.Component {
         <h1>NO Result</h1>
       );
 
-    return <div className="serch_result_container">{blabla}</div>;
+    return <div className="serch_result_container">{query}</div>;
   }
 }
 

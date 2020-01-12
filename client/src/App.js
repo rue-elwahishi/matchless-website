@@ -7,6 +7,9 @@ import SearchResult from "./pages/search-result-page/search-result.component";
 import "./App.css";
 import Alert from "./components/layout/Alert";
 
+// Firebase Auth 
+import { auth } from './utils/firebase'
+
 //Redux
 import { Provider } from "react-redux";
 import { store, persistor } from "./store";
@@ -23,32 +26,38 @@ import SignIn from "./components/sign-in/sign-in.component";
 import setAuthToken from "./utils/setAuthToken";
 import { loadUser } from "./actions/auth";
 import { loadSections } from "./actions/directory";
-import {loadSectionsData} from "./actions/section";
+import { loadSectionsData } from "./actions/section";
+import { loginWithGoogle } from './actions/auth'
+
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
 }
 
 const App = () => {
+
+
   useEffect(() => {
-    store.dispatch(loadUser());
+    //store.dispatch(loadUser());
     store.dispatch(loadSections());
     store.dispatch(loadSectionsData());
+
+
   }, []);
   return (
-    <Provider store={store}>
-      <PersistGate persistor={persistor}>
+    <Provider store={ store }>
+      <PersistGate persistor={ persistor }>
         <Router>
           <div>
             <Header />
             <Alert />
             <Switch>
-              <Route exact path="/" component={HomePage} />
-              <Route path="/section" component={SectionPage} />
-              <Route exact path="/signin" component={SignIn} />
-              <Route exact path="/signup" component={SignUp} />
-              <Route exact path="/checkout" component={checkoutPage} />
-              <Route exact path="/search-result" component={SearchResult} />
+              <Route exact path="/" component={ HomePage } />
+              <Route path="/section" component={ SectionPage } />
+              <Route exact path="/signin" component={ SignIn } />
+              <Route exact path="/signup" component={ SignUp } />
+              <Route exact path="/checkout" component={ checkoutPage } />
+              <Route exact path="/search-result" component={ SearchResult } />
             </Switch>
           </div>
         </Router>
