@@ -1,3 +1,4 @@
+Muftah Elzawi, [12.01.20 20:00]
 import React, { Component, useState, useEffect } from 'react';
 import FormInput from "../form-input/form-input.component";
 
@@ -62,7 +63,8 @@ const SignIn = ({ login, isAuthenticated, loginWithGoogle }) => {
                 })
             })
 
-    }
+Muftah Elzawi, [12.01.20 20:00]
+}
     //redirect if logged in
     if (isAuthenticated) {
         return <Redirect to='/' />
@@ -162,62 +164,3 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps, { setAlert, login, loginWithGoogle })(SignIn);
-
-// class SignIn extends Component {
-//
-//     state = {
-//       email: '',
-//       password: ''
-//     };
-//
-//     handleSubmit = async event => {
-//        event.preventDefault();
-//
-//         this.setState({
-//             email: '',
-//             password: ''
-//         });
-//     };
-//
-//     handleChange = event => {
-//       const { value, name } = event.target;
-//
-//       this.setState({
-//           [name]: value
-//       });
-//     };
-//
-//     render() {
-//         const {email, password} = this.state;
-//
-//         return (
-//             <div className="sign-in">
-//                 <h2>I already have an account</h2>
-//                 <span>Sign in with your email and password</span>
-//                 <form onSubmit={this.handleSubmit}>
-//                     <FormInput
-//                         name='email'
-//                         type='email'
-//                         handleChange={this.handleChange}
-//                         value={email}
-//                         label='email'
-//                         required
-//                     />
-//                     <label>Email</label>
-//                     <FormInput
-//                         name='password'
-//                         type='password'
-//                         handleChange={this.handleChange}
-//                         value={password}
-//                         label="password"
-//                         required
-//                     />
-//                     <CustomButton type="submit" value="Submit Form"> Sign In </CustomButton>
-//                 </form>
-//
-//             </div>
-//         );
-//     }
-// }
-//
-// export default connect(null, { setAlert })(SignIn);
