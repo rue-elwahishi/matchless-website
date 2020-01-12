@@ -5,7 +5,6 @@ import "./search_result_container.scss";
 
 class ResultContainer extends React.Component {
   render() {
-    console.log(this.props.results, "hiii");
     var blabla = "";
     blabla =
       this.props.results.length > 0 ? (

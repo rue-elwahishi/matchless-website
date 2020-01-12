@@ -4,7 +4,7 @@ import CustomButton from "../../components/custom-button/custom-button.component
 import { addItem } from "../../actions/cart";
 import "./result-Card.scss";
 
-const ResultCard = ({ result }) => {
+const ResultCard = ({ result, addItem }) => {
   const { title, price, image_url } = result;
   return (
     <div className="result-item">
