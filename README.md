@@ -30,7 +30,8 @@ $ npm install
 $ npm run dev
 ```
 Configure and export environment variables
-you will have to make a config file with the name config.env inside a config directory in the root.
+you will have to make a config file with the name config.env inside a config directory in the root 
+in order for the dotenv package to work.
 add the following to the file:
 ```
 # NODE_ENV= development or deployment
