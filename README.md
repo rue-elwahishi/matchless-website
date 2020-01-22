@@ -6,6 +6,7 @@ e commerce website for shopping the latest clothing lines.
 * [Screenshot](#screenshot)
 * [Technologies](#technologies)
 * [Setup](#setup)
+* [API Documentation](#api-documentation)
 * [Features](#features)
 * [Code examples](#code-examples)
 * [Status](#status)
@@ -44,12 +45,18 @@ add the following to the file:
 # STRIPE_SECRET_KEY= stripeSectetKey
 
 ```
+
+## API Documentation 
+
+* for api documentation you'll need to visit this link https://vast-sands-58549.herokuapp.com/ and hit the '/' endpoint 
 ## Features 
 * view products by sections
 * add items to cart
 * checkout with stripe payment method
 ### To do 
 * Admin dashboard 
+
+
 ## Code Examples
 To search for items use special shortcode: `const search = (state = initialState, action) => {
   switch (action.type) {
